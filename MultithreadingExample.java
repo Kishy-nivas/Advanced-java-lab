@@ -45,6 +45,8 @@ public class MultithreadingExample
     {
       e.printStackTrace();
     }
+    System.out.println("A simple example calculating sum of n numbers based on a range");
+    
    
     System.out.println("Total sum : " +  (calc1.getSum() + calc2.getSum()));
 
