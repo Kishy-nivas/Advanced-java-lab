@@ -32,11 +32,14 @@ import java.util.*;
   public void run()
   {
 
-    for(int i = 1; i < num.length-1; i++)
+    n=0
+
+    for(int i = 0; i < num.length; i++)
     {
     n = n+num[i];
-    avg = (double)n/i;
+ 
     }
+    avg = (double)n/num.length;
     p.print(1,(int)avg);
 
 
