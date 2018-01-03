@@ -82,7 +82,9 @@ class FileOperations{
     File delete_file = new File(filename);
     if(delete_file.equals(this.file)){
       System.out.println("Can't delete the current working file");
+      return;
     }
+
     if(delete_file.exists()){
       delete_file.delete();
       System.out.println("File deleted successfully ");
@@ -167,7 +169,7 @@ class FileManipulation{
     System.out.println("Enter the file name to start the operations ");
     String currFile = main_scanner.nextLine();
     FileOperations f = new FileOperations(currFile);
-    int choice ;
+    int choice ;                                                //menu is so big, because can't find a way to do multiple-string 
     String menu = "1. list \n2.Append file \n3.Rename file \n4.Delete file \n5.getRoot \n6. Quit \n7. Get file name \n8.find file \n9.Find and replace \n10 Get file extension \n11 list by extension \n 12 Get absoulute path \n13.create temp";
     String new_file_name;
     
@@ -191,6 +193,7 @@ class FileManipulation{
           f.renameFile(new_file_name);
         break;
         case 4:
+          main_scanner.nextLine();
           System.out.println("Enter the file  name to delete ");
           String delete_file = main_scanner.nextLine();
           f.deleteFile(delete_file);
@@ -234,8 +237,7 @@ class FileManipulation{
         case 13:
           f.createTemp();
           break;
-
-      }
+        }
 
     }while(choice!=6);
   }
