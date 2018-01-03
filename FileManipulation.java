@@ -8,27 +8,15 @@ class FileOperations{
   private File file;
   private Scanner sc;
 
-  public FileOperations(String name){
+  public FileOperations(String name) throws IOException{
     this.FileName = name; 
     this.file = new File(this.FileName);
     if (!this.file.exists()){
+      file.createNewFile();
 
     }
     this.sc= new Scanner(System.in);
   }
-
-  public void setFile(String name ){
-    this.FileName = name;
-  }
-
-  public String getFile(String name){
-    return this.FileName;
-  }
-
-  public void writeFile(){
-
-  }
-
   public void getFilename(){
     System.out.println(this.file.getName());
   }
@@ -90,13 +78,11 @@ class FileOperations{
       }
     }
   }
-
-  public  void replaceFile(){
-
-  }
-
   public void deleteFile(String filename ){
     File delete_file = new File(filename);
+    if(delete_file.equals(this.file)){
+      System.out.println("Can't delete the current working file");
+    }
     if(delete_file.exists()){
       delete_file.delete();
       System.out.println("File deleted successfully ");
@@ -163,27 +149,18 @@ class FileOperations{
             ioe.printStackTrace();
          }
   }
-
-  public void fileStatistics(){
-
-  }
   public void getRoot(){
     System.out.println(System.getProperty("user.home"));
   }
+
+  public void createTemp() throws IOException{
+    File temp = File.createTempFile("abc",null);
+  }
+
+  public void getPath (){
+    System.out.println(file.getAbsolutePath());
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 class FileManipulation{
   public static void main(String[] args)throws IOException{
     Scanner main_scanner = new Scanner(System.in);
@@ -191,7 +168,7 @@ class FileManipulation{
     String currFile = main_scanner.nextLine();
     FileOperations f = new FileOperations(currFile);
     int choice ;
-    String menu = "1. list \n2.Append file \n3.Rename file \n4.Delete file \n5.getRoot \n6. Quit \n7. Get file name \n8.find file \n9.Find and replace \n10 Get file extension \n11 list by extension ";
+    String menu = "1. list \n2.Append file \n3.Rename file \n4.Delete file \n5.getRoot \n6. Quit \n7. Get file name \n8.find file \n9.Find and replace \n10 Get file extension \n11 list by extension \n 12 Get absoulute path \n13.create temp";
     String new_file_name;
     
     do{
@@ -202,8 +179,6 @@ class FileManipulation{
         case 1:
           System.out.println("Enter the dir level, (1 for current) :");
           int dir_level = main_scanner.nextInt();
-
-
           f.listAllFiles(dir_level);
         break;
         case 2: 
@@ -253,6 +228,12 @@ class FileManipulation{
           System.out.println("Enter the extension name to list files:");
           String file_extension1 = main_scanner.nextLine();
           f.listAllFilesByExtension(file_extension1);
+        case 12:
+          f.getPath();
+          break;
+        case 13:
+          f.createTemp();
+          break;
 
       }
 
