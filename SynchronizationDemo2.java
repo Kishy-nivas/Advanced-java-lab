@@ -32,7 +32,7 @@ import java.util.*;
   public void run()
   {
 
-    n=0
+    n=0;
 
     for(int i = 0; i < num.length; i++)
     {
@@ -100,18 +100,19 @@ public class SynchronizationDemo2
     System.out.println("Enter the array size");
     n= sc.nextInt();
      int[] numarr = new int[n];
+     System.out.println("Enter the array elements : ");
     for(int i=0; i<n; i++)
     {
       numarr[i] = sc.nextInt();
     }
-    Runnable hello = new AverageNumber(numarr);
-    Thread thread1 = new Thread(hello);
+    Runnable average = new AverageNumber(numarr);
+    Thread thread1 = new Thread(average);
     thread1.setName("AvgNum");
     System.out.println(thread1.getName() + " is starting...");
     thread1.start();
 
-    Runnable bye = new MaximumNumber(numarr);
-    Thread thread2 = new Thread(bye);
+    Runnable max = new MaximumNumber(numarr);
+    Thread thread2 = new Thread(max);
     thread2.setName("MaxNum");
     System.out.println(thread2.getName() + " is starting...");
     thread2.start();
