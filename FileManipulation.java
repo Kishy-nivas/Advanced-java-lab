@@ -65,7 +65,14 @@ class FileOperations{
  
 
   public void listAllFiles(int dir_level){
-    String dir = "." * dir_level;
+    if(dir_level <=0){
+      System.out.println("Invalid value ");
+      return;
+    }
+    char c= '.';
+    char[] repeat = new char[dir_level];
+    Arrays.fill(repeat, c);
+    String dir = new String(repeat);
     File currDir = new File(dir);
     getAllFiles(currDir);
 
@@ -99,6 +106,26 @@ class FileOperations{
       System.out.println("File doesnt exist");
     }
 
+  }
+
+  public String getFileExtension(String file_name){
+      String[] splits = file_name.split("\\.");
+      String extension = "";
+      if(splits.length >= 2){
+            extension = splits[splits.length-1];
+      }
+      return extension;
+
+  }
+
+  public void listAllFilesByExtension(String extension){
+    File currDir = new File(".");
+    File[] filesList  = currDir.listFiles();
+    for (File f: filesList){
+      if (getFileExtension(f.getName()).equals(extension)){
+        System.out.println(f.getName());
+      }
+    }
   }
 
   public void renameFile(String newName){
@@ -164,7 +191,7 @@ class FileManipulation{
     String currFile = main_scanner.nextLine();
     FileOperations f = new FileOperations(currFile);
     int choice ;
-    String menu = "1. list \n2.Append file \n3.Rename file \n4.Delete file \n5.getRoot \n6. Quit \n7. Get file name \n8.find file \n9.Find and replace ";
+    String menu = "1. list \n2.Append file \n3.Rename file \n4.Delete file \n5.getRoot \n6. Quit \n7. Get file name \n8.find file \n9.Find and replace \n10 Get file extension \n11 list by extension ";
     String new_file_name;
     
     do{
@@ -215,6 +242,18 @@ class FileManipulation{
           String replace= main_scanner.nextLine();
           f.FindAndReplace(find.trim(),replace.trim());
           break;
+        case 10:
+          main_scanner.nextLine();
+          System.out.println("Enter the filename to find it's extension : ");
+          String file_extension = main_scanner.nextLine();
+          System.out.println(f.getFileExtension(file_extension));
+          break;
+        case 11: 
+          main_scanner.nextLine();
+          System.out.println("Enter the extension name to list files:");
+          String file_extension1 = main_scanner.nextLine();
+          f.listAllFilesByExtension(file_extension1);
+
       }
 
     }while(choice!=6);
