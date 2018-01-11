@@ -12,6 +12,8 @@ public class ThreadPriority extends Thread {
    System.out.println(tName + " has priority " + tPrio);
  }
 
+
+
  public static void main(String[] args) 
                       throws InterruptedException {
 

@@ -4,6 +4,7 @@ class FileHandling
 {
 	private String fileName;
 
+
   public void getFileName(String fileName)
   {
     this.fileName = fileName;
@@ -12,7 +13,8 @@ class FileHandling
   {
     try
     {
-      FileWriter file = new FileWriter(this.fileName);
+      File temp = File.createTempFile("abc",null);
+      FileWriter file = new FileWriter(temp);
       BufferedWriter buffered_writer  = new BufferedWriter(file);
       Scanner sc= new Scanner(System.in);
       System.out.println("Enter a text to write ");
@@ -33,15 +35,19 @@ class FileHandling
   {
     try
     {
-      FileReader file = new FileReader(this.fileName);
-      BufferedReader buffered_reader= new BufferedReader(file);
+      FileReader file_in = new FileReader(this.fileName);
+      File temp = File.createTempFile("abc",null);
+      FileWriter file_out = new FileWriter(temp);
+      BufferedWriter buffered_writer = new BufferedWriter(file_out);
+      BufferedReader buffered_reader= new BufferedReader(file_in);
       Scanner sc = new Scanner(System.in);
       System.out.println("Reading the file ...");
       String line = null;
-      while((line = buffered_reader.readLine())!=null)
-      {
-        System.out.println(line);
+      while((line = buffered_reader.readLine())!=null){
+        buffered_writer.write(line);
       }
+      buffered_writer.close();
+      buffered_reader.close();
 
     }
     catch(FileNotFoundException e)
@@ -61,7 +67,6 @@ class FileOperation
   {
     FileHandling s= new FileHandling();
     s.getFileName("sample.txt");
-    s.writeFile();
     s.readFile();
     
 
