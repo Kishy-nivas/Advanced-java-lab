@@ -1,37 +1,6 @@
-package sk ;
-
 import java.io.* ;
 import java.net.* ;
 import java.util.Scanner ;
-//import features.censor ;
-/*
-class recv implements Runnable {
-    DataInputStream din = null ;
-    Thread t ;
-    Socket socket ;
-    recv(Socket socket) {
-        t = new Thread(this , "Reac Process") ;
-        this.socket = socket ;
-        t.start() ;
-    }
-
-    public void run() {
-        while(true) {
-            try{
-                din = new DataInputStream(socket.getInputStream()) ;
-                String str = (String)din.readUTF() ;
-                System.out.println("\rOther Guy : "+str) ;
-                System.out.print("You: \t") ;
-
-            } catch (IOException e) {
-
-            }
-
-        }
-    }
-
-}
-*/
 
 class client {
 
@@ -39,8 +8,15 @@ class client {
         Scanner s = new Scanner(System.in) ;
 
         try{      
+            int port ;
 
-            Socket socket =new Socket("localhost",Integer.parseInt(a[0]));  
+            if(a.length == 1 ) {
+                port = Integer.parseInt(a[0]) ;
+            } else {
+                port = 3000; //Default Port
+            }
+
+            Socket socket =new Socket("localhost",port);  
             DataOutputStream dout = null ;
             DataInputStream din = null ;
             String []words ;
@@ -51,21 +27,13 @@ class client {
                 dout = new DataOutputStream(socket.getOutputStream());  
                 System.out.print("You \t") ;
                 String chat = s.nextLine() ;
-                /*
-                words = chat.split(" ") ;
-                chat = "" ;
-                for(String w : words) {
-                    chat += censor.check(w) ;
-                    chat += " " ;
 
-                }*/
-                dout.writeUTF(chat);  
-                
-                if(chat == "endit\n")  {
+                if(chat.compareTo("endit") == 0) {
                     break ;
                 }
 
-
+                dout.writeUTF(chat);  
+                
            }
 
             dout.flush();  

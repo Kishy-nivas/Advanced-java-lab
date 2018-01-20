@@ -1,41 +1,39 @@
-package sk ;
 import java.io.*;  
 import java.net.*;  
 import java.util.Scanner ;
-import sk.recv ;
 
 
 public class server {  
 
-public static void main(String[] args){      
+public static void main(String[] a){      
     Scanner s = new Scanner(System.in) ;
     try{  
+        int port ;
+        if(a.length == 1 ) {
+            port = Integer.parseInt(a[0]) ;
+        } else {
+            port = 3000; //Default Port
+        }
 
-        ServerSocket  serverSocket = new ServerSocket(Integer.parseInt(args[0]));  
+        ServerSocket  serverSocket = new ServerSocket(port);  
         Socket socket = serverSocket.accept();//establishes connection   
         DataOutputStream dout = null ;
         String chat = "" ;
         String []words ;
 
-        new sk.recv(socket) ;
+        new recv(socket) ;
 
-        while(chat != "endit") {
+        while(true) {
             
             dout = new DataOutputStream(socket.getOutputStream()) ;
             System.out.print("You: \t") ;
             chat = s.nextLine() ;
-            /*
-            words = chat.split(" ") ;
-            chat = "" ;
-            for(String w : words) {
-                chat += censor.check(w) ;
-                chat += " " ;
-
+            
+            if(chat.compareTo("endit") == 0) {
+                break ;
             }
-            */
-
+            
             dout.writeUTF( chat ) ;
-
 
         }
 
