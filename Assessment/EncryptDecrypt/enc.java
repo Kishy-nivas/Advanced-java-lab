@@ -38,7 +38,7 @@ class enc {
         FileOutputStream outputHandle = null ;
 
         try {
-            inputHandle = new FileInputStream(fileName) ;
+            inputHandle = new FileInputStream("enc_"+fileName) ;
             outputHandle = new FileOutputStream("dec_"+fileName) ;
 
             int c ;
