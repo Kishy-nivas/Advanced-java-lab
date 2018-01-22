@@ -15,7 +15,7 @@ class pc
       {
         while(LL.size() == capacity )
           wait();
-        System.out.println("Produced produced " + value);
+        System.out.println("Producer produced " + value);
         LL.add(value++);
         notify();
 
