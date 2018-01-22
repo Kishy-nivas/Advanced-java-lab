@@ -13,12 +13,13 @@ class enc_gui {
     public static void main(String a[]){
 
         int key = 1 ;
-        JFrame f = new JFrame("File");
-        f.setLayout(null) ;
-        f.setSize(400 , 400) ;
-        f.setVisible(true) ;
+        JFrame  f = new JFrame ("FIle Encrupt-decrypt software");
+        f.setLayout(new GridLayout(15,4));
+        f.setSize(500 , 400) ;
 
-        JLabel l = new JLabel("Progress Here");
+       
+
+        JLabel l = new JLabel("Enter the file name above ");
         l.setBounds(20,20,200,30);
 
         JTextField tf = new JTextField() ;
@@ -30,10 +31,11 @@ class enc_gui {
         b1.setBounds(50,100,90,30);
         b2.setBounds(150,100,120,30);
 
-        f.add(tf);
+        f.add(tf);      // add everthing to the frame 
         f.add(l);
         f.add(b1);
-        f.add(b2);
+        f.add(b2); 
+        f.setVisible(true) ; // always must be at last, so labels, and commands are drawn over the frame  
 
 
         //Action Listner ;

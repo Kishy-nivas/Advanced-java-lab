@@ -16,7 +16,7 @@ class FindMin
   public static void main(String[] args) 
   {
     int[] arr  = {
-      5,4,2,1,4,5,-99
+      5,4,3,2,1,0,2,3,-99 
     }; 
     int curr_min = 9999;       // use some big values..... 
     find_min(arr,arr.length-1,curr_min); 
