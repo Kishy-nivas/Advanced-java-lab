@@ -21,9 +21,8 @@ class giu {
 
         //Frame
         JFrame f = new JFrame("The Game HHH") ;
-        f.setLayout(null) ;
-        f.setSize(400 , 400) ;
-        f.setVisible(true) ;
+        f.setLayout(new GridLayout(15,4)) ;
+        f.setSize(400 , 400);
 
         //TextBox
 
@@ -42,6 +41,7 @@ class giu {
 
         JLabel jl = new JLabel("Message here") ;
         jl.setBounds(50 , 130 , 150 , 30 ) ;
+
 
         //Listen to events
 
@@ -78,9 +78,10 @@ class giu {
 
         //Add Components
 
-        f.add(tf) ;
-        f.add(jb) ;
-        f.add(jl) ;
-        f.add(reset) ;
+        f.add(tf);
+        f.add(jb);
+        f.add(jl);
+        f.add(reset);
+        f.setVisible(true) ;
     }
 }

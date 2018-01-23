@@ -12,7 +12,7 @@ import java.util.Scanner ;
 class game {
 
 
-    public static void main(String []a){
+    public static void main(String[] a){
 
         int fixedRandomNumber , userGuess ;
 
