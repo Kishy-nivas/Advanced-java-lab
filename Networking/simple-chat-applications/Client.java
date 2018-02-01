@@ -55,10 +55,10 @@ class Client implements Runnable
 
   public static void main(String[] args) throws IOException {
     Client c = new Client(3333);
-    System.out.println("started request......");
+    System.out.println("connection connected ......");
     System.out.println("Enter your message here");
     c.sendData();
-    System.out.println("finished requesting");
+    System.out.println("connection terminated ");  
   }
 
 }
